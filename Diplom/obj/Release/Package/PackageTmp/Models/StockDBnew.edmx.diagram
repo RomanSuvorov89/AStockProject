@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e65238ace663416697967217499146a7" Name="Diagram1">
+        <EntityTypeShape EntityType="StockDB.APIs" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.AudioCards" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.Boxes" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.Cpus" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.FormFactorMB" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.HDDs" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.HDDType" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.Manufacturers" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.MotherBoards" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.OrderS" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.OrdersM" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.partsFreq" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.Powers" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.Rams" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.RamType" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.Shops" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.slotBus" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.Sockets" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.sysdiagrams" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockDB.VideoCards" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="StockDB.FK_VideoCards_APIs" />
+        <AssociationConnector Association="StockDB.FK_AudioCards_Manufacturers" />
+        <AssociationConnector Association="StockDB.FK_AudioCards_slotBus" />
+        <AssociationConnector Association="StockDB.FK_Boxes_FormFactorMB" />
+        <AssociationConnector Association="StockDB.FK_Boxes_Manufacturers" />
+        <AssociationConnector Association="StockDB.FK_Boxes_Powers" />
+        <AssociationConnector Association="StockDB.FK_Cpus_Manufacturers" />
+        <AssociationConnector Association="StockDB.FK_Cpus_Sockets" />
+        <AssociationConnector Association="StockDB.FK_MotherBoards_FormFactorMB" />
+        <AssociationConnector Association="StockDB.FK_HDDs_HDDType" />
+        <AssociationConnector Association="StockDB.FK_HDDs_Manufacturers" />
+        <AssociationConnector Association="StockDB.FK_MotherBoards_Manufacturers" />
+        <AssociationConnector Association="StockDB.FK_OrdersM_Manufacturers" />
+        <AssociationConnector Association="StockDB.FK_Powers_Manufacturers" />
+        <AssociationConnector Association="StockDB.FK_Rams_Manufacturers" />
+        <AssociationConnector Association="StockDB.FK_VideoCards_Manufacturers" />
+        <AssociationConnector Association="StockDB.FK_MotherBoards_RamType" />
+        <AssociationConnector Association="StockDB.FK_MotherBoards_slotBus" />
+        <AssociationConnector Association="StockDB.FK_MotherBoards_Sockets" />
+        <AssociationConnector Association="StockDB.FK_OrderS_Shops" />
+        <AssociationConnector Association="StockDB.FK_Rams_partsFreq" />
+        <AssociationConnector Association="StockDB.FK_Rams_RamType" />
+        <AssociationConnector Association="StockDB.FK_VideoCards_RamType" />
+        <AssociationConnector Association="StockDB.FK_VideoCards_slotBus" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

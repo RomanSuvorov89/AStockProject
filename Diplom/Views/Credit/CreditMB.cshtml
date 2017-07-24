@@ -1,0 +1,124 @@
+﻿@model List<Diplom.Models.ViewModel>
+
+
+@{
+    ViewBag.Title = "Запрос - Материнская плата";
+}
+
+    @using (Ajax.BeginForm("CreditMB", "Credit", new AjaxOptions() { HttpMethod = "POST" }))
+    {
+        <form>
+            <section style="margin-top:30px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>Введите данные (Мат. плата)</h1>
+                    </div>
+                    @if (Model.FirstOrDefault(x => x.id == 1).uniqId != 0)
+                    {
+                        <input class="form-control invisible" name="idMB" value="@Model.FirstOrDefault(x => x.id == 1).uniqId" />
+                    }
+                    <div class="modal-body">
+                        <table class="table table-condensed table-striped table-bordered">
+                            <tr>
+                                <td>Наименование:</td>
+                                <td><input name="nameMB" type="text" id="nameMB" class="form-control" value="@Model.FirstOrDefault(x => x.id==1).Name"></td>
+                            </tr>
+                            <tr>
+                                <td>Разьем:</td>
+                                <td>
+                                    <select name="socketid" id="socketid" class="form-control">
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.socket != null)
+                                            {
+                                                <option value="@item.id" id="@item.id">@item.socket</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Разьем памяти:</td>
+                                <td>
+                                    <select name="idRam" id="idRam" class="form-control">
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.type != null)
+                                            {
+                                                <option value="@item.id" id="@item.id">@item.type</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Производитель:</td>
+                                <td>
+                                    <select name="idManufacture" id="idManufacture" class="form-control">
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.brand != null)
+                                            {
+                                                <option value="@item.id">@item.brand</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bus:</td>
+                                <td>
+                                    <select name="idBus" id="idBus" class="form-control">
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.bus != null)
+                                            {
+                                                <option value="@item.id">@item.bus</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>FormFactor:</td>
+                                <td>
+                                    <select name="idFF" id="idFF" class="form-control">
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.other != null)
+                                            {
+                                                <option value="@item.id">@item.other</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Стоимость</td>
+                                <td><input type="text" name="price" id="price" class="form-control" value="@Decimal.Round(Model.FirstOrDefault(x => x.id==1).price.GetValueOrDefault(),2)"></td>
+                            </tr>
+                            <tr>
+                                <td>Количество:</td>
+                                <td><input type="text" name="count" id="count" class="form-control" value="@Model.FirstOrDefault(x => x.id==1).count"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button class="btn btn-primary" type="submit" onclick="sendPost('MB')">Сохранить</button>
+                    </div>
+                </div>
+            </section>
+        </form>
+    }
+
+<script>
+    $(document).ready(function () {
+        $("#socketid").val(@Model.FirstOrDefault(x => x.id == 1).idsocket);
+        $("#idManufacture").val(@Model.FirstOrDefault(x => x.id == 1).idbrand);
+        $("#idBus").val(@Model.FirstOrDefault(x => x.id == 1).idbus);
+        $("#idFF").val(@Model.FirstOrDefault(x => x.id == 1).idother);
+        $("#idRam").val(@Model.FirstOrDefault(x => x.id == 1).idtype);
+    });
+</script>
+

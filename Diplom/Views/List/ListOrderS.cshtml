@@ -1,0 +1,48 @@
+﻿@model List<Diplom.Models.OrderS>
+
+<div class="container" >
+    <h2>Таблица заказов по магазинам</h2>
+    <table class="table table-hover" id="OrderTableS">
+        <thead>
+            <tr>
+                <th>Номер заказа</th>
+                <th>Наименование товара</th>
+                <th>Магазин</th>
+                <th>Количество товара, шт</th>
+                <th>Сумма заказа, руб</th>
+                <th>Дата заказа</th>
+                <th>Кем заказан</th>
+                <th>Изменить статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var data in Model)
+            {
+                if (data.Status)
+                {
+                    decimal sum = (data.Price) * (data.numberParts);
+                    <tr class="info">
+                        <td>@data.idOrder</td>
+                        <td>@data.namePart</td>
+                        <td>@data.Shops.nameShop</td>
+                        <td>@data.numberParts</td>
+                        <td>@Decimal.ToInt32(sum)</td>
+                        <td>@data.DateOrder</td>
+                        <td>@data.Manager</td>
+                        <td> <button type="button" class="btn btn-primary" onclick="orderCompleteS('@data.idOrder','@data.namePart','@data.numberParts','@data.nameTable')"> Подтвердить исполнение</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+            $(document).ready(function () {
+                $('#OrderTableS').DataTable({
+                    "language": {
+                        "url": "/content/russian.json"
+                    }
+                });
+            });
+</script>

@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Памятка";
+}
+<h2>@ViewBag.Title</h2>
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Назначение кнопки</th>
+                    <th>Функционал</th>
+                    <th>Пример</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Редактирование записей в БД</td>
+                    <td>Редактировать</td>
+                    <td><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-edit"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Удаление записи из БД</td>
+                    <td>Удалить</td>
+                    <td><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Добавление новой записи в БД</td>
+                    <td>Добавить</td>
+                    <td><button class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Заказ товара у поставщика</td>
+                    <td>Заказать</td>
+                    <td><button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-usd"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Отправка товара в магазин</td>
+                    <td>Заказать</td>
+                    <td><button type="button" class="btn btn-info"><i class="glyphicon glyphicon-ok-sign"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Кнопка сохранения отчёта</td>
+                    <td>Сохранить</td>
+                    <td><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-floppy-saved"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Кнопка просмотра подпункта меню</td>
+                    <td>Просмотреть</td>
+                    <td><button type="button" class="btn btn-success" id="partitions">Комплектующие</button></td>
+                </tr>
+                <tr>
+                    <td>Кнопка просмотра таблицы данных БД</td>
+                    <td>Просмотреть</td>
+                    <td><button type="button" class="btn btn-info" id="CPU">Процессор</button></td>
+                </tr>
+            </tbody>
+        </table>               
+    </div>
+</div>

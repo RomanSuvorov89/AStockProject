@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title АС Склад</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/ListScript.js")
+  <!--  Scripts.Render("~/Content/dataTables.css")
+    Scripts.Render("~/Scripts/dataTables.js")
+    Scripts.Render("~/Scripts/dataTablesbs.js")-->
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <link rel="stylesheet" href="~/Content/navbar-green.css">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script> 
+    <link rel="shortcut icon" type="image/x-icon" href="~/new.ico">
+
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Работа с данными склада", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Экспертная система", "ExSystem", "Home")</li>
+                    <li>@Html.ActionLink("Памятка", "Guide", "Home")</li>
+                </ul>
+                <p class="nav navbar-text navbar-right" style="padding-right:50px">Пользователь:  @User.Identity.Name</p>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year / АС склада сети магазинов комплектующих ПК</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    // Initialize popover component
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+
+
+    $('#myDropdown').on('show.bs.dropdown', function () {
+        // do something…
+    })
+
+
+
+
+
+
+</script>

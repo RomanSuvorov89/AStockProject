@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище StockDBContainer" CdmEntityContainer="DiplomEntities1">
+    <EntitySetMapping Name="APIs">
+      <EntityTypeMapping TypeName="StockDB.APIs">
+        <MappingFragment StoreEntitySet="APIs">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameAPI" ColumnName="nameAPI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AudioCards">
+      <EntityTypeMapping TypeName="StockDB.AudioCards">
+        <MappingFragment StoreEntitySet="AudioCards">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameAudio" ColumnName="NameAudio" />
+          <ScalarProperty Name="idManufacture" ColumnName="idManufacture" />
+          <ScalarProperty Name="Bus" ColumnName="Bus" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Boxes">
+      <EntityTypeMapping TypeName="StockDB.Boxes">
+        <MappingFragment StoreEntitySet="Boxes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameBox" ColumnName="nameBox" />
+          <ScalarProperty Name="idManufacture" ColumnName="idManufacture" />
+          <ScalarProperty Name="idForm" ColumnName="idForm" />
+          <ScalarProperty Name="Power" ColumnName="Power" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cpus">
+      <EntityTypeMapping TypeName="StockDB.Cpus">
+        <MappingFragment StoreEntitySet="Cpus">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idManufacture" ColumnName="idManufacture" />
+          <ScalarProperty Name="nameCpu" ColumnName="nameCpu" />
+          <ScalarProperty Name="socketCpu" ColumnName="socketCpu" />
+          <ScalarProperty Name="coresCpu" ColumnName="coresCpu" />
+          <ScalarProperty Name="freqCpu" ColumnName="freqCpu" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormFactorMB">
+      <EntityTypeMapping TypeName="StockDB.FormFactorMB">
+        <MappingFragment StoreEntitySet="FormFactorMB">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameFF" ColumnName="nameFF" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDDs">
+      <EntityTypeMapping TypeName="StockDB.HDDs">
+        <MappingFragment StoreEntitySet="HDDs">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nameHDD" ColumnName="nameHDD" />
+          <ScalarProperty Name="capatity" ColumnName="capatity" />
+          <ScalarProperty Name="idManufacture" ColumnName="idManufacture" />
+          <ScalarProperty Name="typeHDD" ColumnName="typeHDD" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDDType">
+      <EntityTypeMapping TypeName="StockDB.HDDType">
+        <MappingFragment StoreEntitySet="HDDType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Manufacturers">
+      <EntityTypeMapping TypeName="StockDB.Manufacturers">
+        <MappingFragment StoreEntitySet="Manufacturers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Manufacture" ColumnName="Manufacture" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MotherBoards">
+      <EntityTypeMapping TypeName="StockDB.MotherBoards">
+        <MappingFragment StoreEntitySet="MotherBoards">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idManufacture" ColumnName="idManufacture" />
+          <ScalarProperty Name="nameMB" ColumnName="nameMB" />
+          <ScalarProperty Name="socketMB" ColumnName="socketMB" />
+          <ScalarProperty Name="typeRam" ColumnName="typeRam" />
+          <ScalarProperty Name="maxFreq" ColumnName="maxFreq" />
+          <ScalarProperty Name="slotsBus" ColumnName="slotsBus" />
+          <ScalarProperty Name="FFMB" ColumnName="FFMB" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderS">
+      <EntityTypeMapping TypeName="StockDB.OrderS">
+        <MappingFragment StoreEntitySet="OrderS">
+          <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+          <ScalarProperty Name="numberParts" ColumnName="numberParts" />
+          <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
+          <ScalarProperty Name="DateComplete" ColumnName="DateComplete" />
+          <ScalarProperty Name="namePart" ColumnName="namePart" />
+          <ScalarProperty Name="idShop" ColumnName="idShop" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="nameTable" ColumnName="nameTable" />
+          <ScalarProperty Name="Manager" ColumnName="Manager" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrdersM">
+      <EntityTypeMapping TypeName="StockDB.OrdersM">
+        <MappingFragment StoreEntitySet="OrdersM">
+          <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+          <ScalarProperty Name="numberParts" ColumnName="numberParts" />
+          <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
+          <ScalarProperty Name="DateComplete" ColumnName="DateComplete" />
+          <ScalarProperty Name="namePart" ColumnName="namePart" />
+          <ScalarProperty Name="idManufacture" ColumnName="idManufacture" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="nameTable" ColumnName="nameTable" />
+          <ScalarProperty Name="Manager" ColumnName="Manager" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="partsFreq">
+      <EntityTypeMapping TypeName="StockDB.partsFreq">
+        <MappingFragment StoreEntitySet="partsFreq">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="frequency" ColumnName="frequency" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Powers">
+      <EntityTypeMapping TypeName="StockDB.Powers">
+        <MappingFragment StoreEntitySet="Powers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameBox" ColumnName="NameBox" />
+          <ScalarProperty Name="idManufacture" ColumnName="idManufacture" />
+          <ScalarProperty Name="Watts" ColumnName="Watts" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rams">
+      <EntityTypeMapping TypeName="StockDB.Rams">
+        <MappingFragment StoreEntitySet="Rams">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idManufacture" ColumnName="idManufacture" />
+          <ScalarProperty Name="nameRam" ColumnName="nameRam" />
+          <ScalarProperty Name="freqRam" ColumnName="freqRam" />
+          <ScalarProperty Name="typeRam" ColumnName="typeRam" />
+          <ScalarProperty Name="taiming" ColumnName="taiming" />
+          <ScalarProperty Name="capRam" ColumnName="capRam" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RamType">
+      <EntityTypeMapping TypeName="StockDB.RamType">
+        <MappingFragment StoreEntitySet="RamType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="typeMemory" ColumnName="typeMemory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shops">
+      <EntityTypeMapping TypeName="StockDB.Shops">
+        <MappingFragment StoreEntitySet="Shops">
+          <ScalarProperty Name="idShop" ColumnName="idShop" />
+          <ScalarProperty Name="nameShop" ColumnName="nameShop" />
+          <ScalarProperty Name="adressShop" ColumnName="adressShop" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="slotBus">
+      <EntityTypeMapping TypeName="StockDB.slotBus">
+        <MappingFragment StoreEntitySet="slotBus">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="typeBus" ColumnName="typeBus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sockets">
+      <EntityTypeMapping TypeName="StockDB.Sockets">
+        <MappingFragment StoreEntitySet="Sockets">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="socket" ColumnName="socket" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="StockDB.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoCards">
+      <EntityTypeMapping TypeName="StockDB.VideoCards">
+        <MappingFragment StoreEntitySet="VideoCards">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NameVideo" ColumnName="NameVideo" />
+          <ScalarProperty Name="idManufacture" ColumnName="idManufacture" />
+          <ScalarProperty Name="TypeMem" ColumnName="TypeMem" />
+          <ScalarProperty Name="Bus" ColumnName="Bus" />
+          <ScalarProperty Name="DirectX" ColumnName="DirectX" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

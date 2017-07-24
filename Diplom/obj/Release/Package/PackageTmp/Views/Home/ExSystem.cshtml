@@ -1,0 +1,153 @@
+﻿@model Diplom.Models.ExSystem
+@{
+    ViewBag.Title = "ExSystem";
+}
+<input type="hidden" id="control" questNum="@Model.thisQuestion" questStr="@Model._question" />
+<h2>Экспертная система подбора комплектующих для ПК</h2>
+
+
+
+<div class="container" id="Quest">
+   <div class="jumbotron" style="text-align: center">
+       <h1 id="FF">@Model._question</h1>
+       <div class="btn-group" data-toggle="buttons" style="margin-top:80px">
+          <button type="button" class="btn btn-info btn-lg choice" value="false">Нет</button>
+          <button type="button" class="btn btn-info btn-lg choice" value="true">Да</button>
+       </div>
+        </div>
+    <section style="text-align: center">
+        <button class="btn btn-danger Start"><i class="glyphicon glyphicon-fast-backward"></i>  В начало</button>
+        <button class="btn btn-warning Back"><i class="glyphicon glyphicon-menu-left"></i>  Назад</button>
+        <button class="btn btn-primary GO" disabled="disabled">Вперед  <i class="glyphicon glyphicon-menu-right"></i></button>
+    </section>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Введите данные</h4>
+            </div>
+            <div class="modal-body">
+                <p>Цена вопроса:</p>
+                <input type="text" id="valuePrice" class="form-control"/>
+                <p id="help" class="text-danger">Цена должна быть более 20 000 рублей!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button class="btn btn-primary ExSystem" type="submit">Завершить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="Answer"></div>
+
+<script>
+    var answers = [];
+    var result = null;
+    $(document).ready(function () {
+        console.log("ready!");
+        $('.GO').prop('disabled', true);
+    //    $('.GO').addClass("disabled");
+    });
+
+    $('.choice').click(function (e) {
+        $(this).addClass("active").siblings().removeClass("active");
+        $('.GO').prop('disabled', false);
+        result = $('.btn.active').attr("value");
+    });
+
+    $('.GO').click(function () {
+        var i = $('#control').attr("questNum");
+        answers[i] = result;
+        if (i < 18) {
+            console.log(result);
+            $.ajax(
+                {
+                    cache: false,
+                    type: 'POST',
+                    url: '/Home/ExS',
+                    dataType: 'json',
+                    data: { i, result },
+                    success: function (data) {
+                        console.log(data._question);
+                        console.log(data.thisQuestion);
+                        $('#control').attr("questNum", data.thisQuestion);
+                        $('#control').attr("questStr", data._question);
+                        $('.choice').removeClass("active");
+                        $('.GO').prop('disabled', true);
+                        $('#FF').text(data._question);
+                    }
+                });
+        }
+        else {
+            $('#help').hide();
+            $('#myModal').modal('show');
+        }
+    });
+
+    $('.Back').click(function () {
+        var i = $('#control').attr("questNum");
+        i = i - 1;
+        $.ajax(
+            {
+                cache: false,
+                type: 'POST',
+                url: '/Home/ExS',
+                dataType: 'json',
+                data: { i },
+                success: function (data) {
+                    console.log(data._question);
+                    console.log(data.thisQuestion);
+                    $('#control').attr("questNum", data.thisQuestion);
+                    $('#control').attr("questStr", data._question);
+                    $('.choice').removeClass("active");
+                    $('.GO').prop('disabled', true);
+                    $('#FF').text(data._question);
+                }
+            });
+    });
+
+    $('.Start').click(function () {
+        location.reload();
+    })
+
+    $('.ExSystem').click(function (e) {
+        if ($(valuePrice).val() == "")
+        {
+            alert("Введите сумму на покупку ПК!");
+            e.preventDefault;
+        }
+        else if (parseInt($(valuePrice).val()))
+        {
+            var price = parseInt($(valuePrice).val());
+            if (price < 20000)
+            {
+                $('#help').show();
+                e.preventDefault;
+            }
+            else
+            {
+                $("#Quest").hide();
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: '/Home/ExSResult',
+                        data: { price, answers },
+                        success: function (data) {
+                            $('#myModal').modal('hide');
+                            $("#Answer").html(data).show();
+                        }
+                    });
+            }
+        }
+        else
+        {
+            alert("Некорректное значение!");
+            e.preventDefault;
+        }
+    })
+
+</script>

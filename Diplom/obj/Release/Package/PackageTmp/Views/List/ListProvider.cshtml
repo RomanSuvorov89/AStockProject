@@ -1,0 +1,40 @@
+﻿@model List<Diplom.Models.Manufacturers>
+@{
+    ViewBag.Title = "Поставщики";
+}
+
+
+
+<div class="container">
+    <h2>Таблица поставщиков</h2>
+    <table class="table table-hover" id="ProviderTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Наименование поставщика</th>
+                <th>Адрес дилера компании</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var data in Model)
+            {
+
+            <tr class="info">
+                <td>@data.id</td>
+                <td>@data.Manufacture</td>
+                <td>@data.Adress</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+            $(document).ready(function () {
+                $('#ProviderTable').DataTable({
+                    "language": {
+                        "url": "/content/russian.json"
+                    }
+                });
+            });
+</script>

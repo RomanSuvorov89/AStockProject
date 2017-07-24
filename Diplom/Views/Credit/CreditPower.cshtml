@@ -1,0 +1,68 @@
+﻿@model List<Diplom.Models.ViewModel>
+
+
+@{
+    ViewBag.Title = "Запрос - Блок питания";
+}
+
+    @using (Ajax.BeginForm("CreditPower", "Credit", new AjaxOptions() { HttpMethod = "POST" }))
+    {
+        <form>
+            <section style="margin-top:30px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>Введите данные (Блок питания)</h1>
+                    </div>
+                    @if (Model.FirstOrDefault(x => x.id == 1).uniqId != 0)
+                    {
+                        <input class="form-control invisible" name="idPower" value="@Model.FirstOrDefault(x => x.id == 1).uniqId" />
+                    }
+                    <div class="modal-body">
+                        <table class="table table-condensed table-striped table-bordered">
+                            <tr>
+                                <td>Наименование:</td>
+                                <td><input name="namePower" type="text" id="namePower" class="form-control" value="@Model.FirstOrDefault(x => x.id==1).Name"></td>
+                            </tr>
+                            <tr>
+                                <td>Производитель:</td>
+                                <td>
+                                    <select name="idManufacture" id="idManufacture" class="form-control">
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.brand != null)
+                                            {
+                                                <option value="@item.id">@item.brand</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Мощность</td>
+                                <td><input type="text" name="cap" id="cap" class="form-control" value="@Model.FirstOrDefault(x => x.id==1).cap"></td>
+                            </tr>
+                            <tr>
+                                <td>Стоимость</td>
+                                <td><input type="text" name="price" id="price" class="form-control" value="@Decimal.Round(Model.FirstOrDefault(x => x.id==1).price.GetValueOrDefault(),2)"></td>
+                            </tr>
+                            <tr>
+                                <td>Количество:</td>
+                                <td><input type="text" name="count" id="count" class="form-control" value="@Model.FirstOrDefault(x => x.id==1).count"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button class="btn btn-primary" type="submit" onclick="sendPost('Power')">Сохранить</button>
+                    </div>
+                </div>
+            </section>
+        </form>
+    }
+
+<script>
+    $(document).ready(function () {
+        $("#idManufacture").val(@Model.FirstOrDefault(x => x.id == 1).idbrand);
+    });
+</script>
+

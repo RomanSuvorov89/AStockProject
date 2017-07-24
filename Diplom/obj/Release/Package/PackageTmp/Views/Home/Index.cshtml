@@ -1,0 +1,68 @@
+﻿<link rel="shortcut icon" type="image/x-icon" href="~/new.ico">
+<section style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Меню просмотра данных:</h3>
+            <button type="button" class="btn btn-success" id="partitions">Комплектующие</button>
+            <button type="button" class="btn btn-success" id="Provider">Поставщики</button>
+            <button type="button" class="btn btn-success" id="Shop">Магазины</button>
+            <button type="button" class="btn btn-success" id="Order">Заказы</button>
+            <button type="button" class="btn btn-success" id="Report">Отчёты</button>
+        </div>
+
+
+    </div>
+    <div style="padding-bottom: 30px;" id="partitions" class="info">
+        <h3>Комплектующие:</h3>
+        <button type="button" class="btn btn-info" id="CPU">Процессор</button>
+        <button type="button" class="btn btn-info" id="MB">Мат. плата</button>
+        <button type="button" class="btn btn-info" id="RAM">ОЗУ</button>
+        <button type="button" class="btn btn-info" id="Video">Видеокарта</button>
+        <button type="button" class="btn btn-info" id="Box">Корпус</button>
+        <button type="button" class="btn btn-info" id="Audio">Аудиокарта</button>
+        <button type="button" class="btn btn-info" id="HDD">Винчестер</button>
+        <button type="button" class="btn btn-info" id="Power">Блок питания</button>
+    </div>
+
+    <div style="padding-bottom: 10px;" id="details" class="info"></div>
+</section>
+
+<script>
+        $(document).ready(function () {
+            $(".info").hide();
+        });
+
+        $(".btn-info").click(function (e) {
+            var id = $(this).attr("id");
+             $("#myTab").hide();
+             $("#Tab1").hide();
+             $(this).addClass('active').siblings().removeClass('active');
+             $.ajax(
+                 {
+                    url: '/List/List'+id,
+                    data: {  },
+                    success: function (result) {
+                        $("#myTab").remove();
+                        $("#Tab1").remove();
+                        $("#details").html(result).show();
+                        $("#myTab li:eq(0) a").tab('show');
+                    }
+                });
+        });
+
+        $(".btn-success").click(function (e) {
+            var id = $(this).attr("id");
+            $(".info").hide();
+            $(this).addClass('active').siblings().removeClass('active');
+            $(".btn-info").removeClass('active');
+            $("#" + id + ".info").show();
+            $.ajax(
+                {
+                    url: '/List/List' + id,
+                    success: function (result) {
+                    $("#details").html(result).show();
+                    }
+                });
+        });
+</script>
+

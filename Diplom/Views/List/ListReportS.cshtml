@@ -1,0 +1,55 @@
+﻿@model List<Diplom.Models.OrderS>
+
+
+<div class="container" >
+    <h2>Таблица поставок по магазинам</h2>
+    <table class="table table-hover" id="ReportTableS">
+        <thead>
+            <tr>
+                <th>Номер заказа</th>
+                <th>Наименование товара</th>
+                <th>Количество товара, шт</th>
+                <th>Сумма заказа, руб</th>
+                <th>Дата заказа</th>
+                <th>Дата выполнения</th>
+                <th>Получатель</th>
+                <th>Отчёты</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var data in Model)
+            {
+                if (!data.Status)
+                {
+                    decimal sum = (data.Price) * (data.numberParts);
+                    <tr class="info">
+                        <td>@data.idOrder</td>
+                        <td>@data.namePart</td>
+                        <td>@data.numberParts</td>
+                        <td>@Decimal.ToInt32(sum)</td>
+                        <td>@data.DateOrder</td>
+                        <td>@data.DateComplete</td>
+                        <td>@data.Shops.nameShop</td>
+                        <td><button type="button" class="btn btn-default"><i class="glyphicon glyphicon-floppy-saved"></i></button></td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div style="padding-bottom: 10px;">
+    <button type="button" class="btn btn-default btn-lg" style="text-align:right"><i class="glyphicon glyphicon-floppy-saved"></i></button>
+</div>
+
+<script>
+            $(document).ready(function () {
+                $('#ReportTableS').DataTable({
+                    "language": {
+                        "url": "/content/russian.json"
+                    }
+                });
+            });
+</script>

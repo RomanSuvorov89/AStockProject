@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Отчёты";
+}
+
+<h1>Выберите таблицу отчётов для просмотра</h1>
+
+<div class="container">
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ReportM">Показать таблицу отчётов по поставщикам</button>
+        <div class="container, collapse" id="ReportM"></div>
+
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ReportS">Показать таблицу отчётов по магазинам</button>
+        <div class="container, collapse" id="ReportS"></div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $.ajax(
+            {
+                url: '/List/ListReportM',
+                success: function (result) {
+                    $("#ReportM").html(result);
+                }
+            });
+    });
+    $(document).ready(function () {
+        $.ajax(
+            {
+                url: '/List/ListReportS',
+                success: function (result) {
+                    $("#ReportS").html(result);
+                }
+            });
+    });
+</script>

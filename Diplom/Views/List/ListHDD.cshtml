@@ -1,0 +1,103 @@
+﻿@model List<Diplom.Models.HDDs>
+@{
+    ViewBag.Title = "Процессоры";
+    var valStrings = new List<string>();
+}
+
+@foreach (var check in Model)
+{
+    if (!(valStrings.Exists(x=>x == check.Manufacturers.Manufacture)))
+    {
+        valStrings.Add(check.Manufacturers.Manufacture);
+    }
+}
+<ul class="nav nav-tabs" id="myTab">
+    @foreach (var factory in valStrings)
+    {
+        <li><a data-toggle="tab" href="#@factory">@factory</a></li>
+
+    }
+    <li class="col-md-1 col-md-offset-6">
+        <button class="btn btn-primary" onclick="bedit(0,'HDD')" href="#" value="0"><i class="glyphicon glyphicon-plus"></i></button>
+    </li>
+</ul>
+<section style="margin-top:30px">
+    <div class="tab-content" id="Tab">
+        @foreach (var plant in valStrings)
+        {
+            <div role="tabpanel" class="tab-pane fade in active" id="@plant">
+                <div class="row">
+                    <table class="table table-striped table-hover " id="dataTable-@plant">
+                        <thead>
+                            <tr>
+                                <th>Наименование</th>
+                                <th>Тип ЖД</th>
+                                <th>Вместимость,гб</th>
+                                <th>Стоимость,руб</th>
+                                <th>Количество,шт</th>
+                                <th>Инструменты</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var data in Model)
+                            {
+                                if (plant == data.Manufacturers.Manufacture)
+                                {
+                                    <tr class="info">
+                                        <td>@data.nameHDD</td>
+                                        <td>@data.HDDType.Type</td>
+                                        <td>@data.capatity</td>
+                                        <td>@Decimal.ToInt32(data.Price.Value)</td>
+                                        <td>@data.Count</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary bedit" onclick="bedit(@data.id,'HDD')" value=@data.id><i class="glyphicon glyphicon glyphicon-edit"></i></button>
+                                            <button type="button" class="btn btn-danger bdel" onclick="bdel(@data.id,'HDD')" value=@data.id><i class="glyphicon glyphicon-trash"></i></button>
+                                            <button type="button" class="btn btn-warning badd" onclick="badd(@data.id,'HDD','@data.nameHDD','@plant','@Decimal.ToInt32(data.Price.Value)')" value=@data.id><i class="glyphicon glyphicon-usd"></i></button>
+                                            <button type="button" class="btn btn-info bshop" onclick="bshop(@data.id,'HDD','@data.nameHDD','@plant','@Decimal.ToInt32(data.Price.Value)', '@data.Count')" value=@data.id><i class="glyphicon glyphicon-ok-sign"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <script>
+            $(document).ready(function () {
+                $('#dataTable-@plant').DataTable({
+                    "language": {
+                        "url": "/content/russian.json"
+                    }
+                });
+            });
+            </script>
+        }
+    </div>
+</section>
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+    <script>
+        $(document).ready(function (e) {
+            var active = tab(7);
+            $('#myTab li').each(function (i) {
+                console.log(i + ": " + $(this).text());
+                if (i == active) {
+                    $('#myTab li:eq(' + active + ') a').tab('show');
+                    return false;
+                }
+                else $('#myTab a:first').tab('show');
+            });
+        });
+
+        $('#myTab a').click(function (e) {
+            $(this).tab('show');
+            $('#myTab li').each(function (i) {
+                if ("#" + $(this).text() == $(e.target).attr('href')) {
+                    OpenTab[7] = i; console.log(OpenTab[7]);
+                }
+            });
+        });
+
+    </script>
+

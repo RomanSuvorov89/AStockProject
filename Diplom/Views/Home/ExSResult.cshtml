@@ -1,0 +1,33 @@
+﻿@model Diplom.Models.ExSystem
+@{
+    ViewBag.Title = "ExSystem";
+}
+
+<div class="jumbotron" id="Result" style="margin-top:10px">
+    <h1 class="text-success">Результат</h1>
+    <h2 class="text-danger">На сумму <strong> @Model._price </strong> рублей оптимальный выбор по оценке ЭС:</h2>
+    <h3 class="text-primary">Корпус: @Model.completed[5]</h3>
+    <h3 class="text-primary">Процессор: @Model.completed[0]</h3>
+    <h3 class="text-primary">Мат.плата: @Model.completed[1]</h3>
+    <h3 class="text-primary">Видеокарта: @Model.completed[3]</h3>
+    <h3 class="text-primary">Оперативная память: @Model.completed[2]</h3>
+    <h3 class="text-primary">Аудиокарта: @Model.completed[7]</h3>
+    <h3 class="text-primary">Жесткий диск: @Model.completed[4]</h3>
+  <!--  <h3 class="text-primary">Блок питания: </h3> -->
+</div>
+
+<section style="text-align: center; margin-top:50px">
+    <button class="btn btn-danger Start"><i class="glyphicon glyphicon-fast-backward"></i>  Заново</button>
+    <button class="btn btn-warning Buy">Заказать  <i class="glyphicon glyphicon-usd"></i></button>
+</section>
+
+
+<script>
+    $('.Start').click(function () {
+        location.reload();
+    })
+
+    $('.Buy').click(function () {
+        
+    })
+</script>

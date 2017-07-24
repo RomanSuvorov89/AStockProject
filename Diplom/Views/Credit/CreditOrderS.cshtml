@@ -1,0 +1,88 @@
+﻿@model List<Diplom.Models.ViewModel>
+
+
+@{
+    ViewBag.Title = "Запрос - Заказ";
+}
+
+
+            <section style="margin-top:30px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Введите количество товара к поставке, и выберите магазин приёмки
+                        <span class="text-danger">@Model.First().Name</span>  от поставщика <span class="text-primary">@Model.First().brand</span></h2>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-condensed table-striped table-bordered">
+                            <tr>
+                                <td>Количество:</td>
+                                <td><input type="text" name="count" id="count" class="form-control" value=""></td>
+                            </tr>
+                            <tr>
+                                <td>Магазин:</td>
+                                <td>
+                                    <select name="idShop" id="idShop" class="form-control">
+                                        @foreach (var item in Model)
+                                        {
+                                            if (item.idShop != null)
+                                            {
+                                                <option value="@item.idShop">@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <h3>Сумма заказа: <strong><span class="text-danger sum">0</span></strong> руб.</h3> 
+                        <button class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button class="btn btn-warning OK" type="submit" disabled="disabled" onclick="send(@Model.First().uniqId , '@Model.First().Table' , '@Model.First().Name' , '@Model.First().brand' , '@Model.First().price', $('#idShop').val())">Отправить</button>
+                    </div>
+                </div>
+            </section>
+
+
+<script>
+    $(document).ready(function () {
+        $('.OK').prop('disabled', true);
+    });
+
+    $('#count').on("input", function () {
+        if ($('#count').val() == "") {
+            $('.OK').prop('disabled', true);
+        }
+        else $('.OK').prop('disabled', false);
+        $('.sum').text(@Model.First().price*($('#count').val()))
+    })
+
+    function send(id, table, nameP, nameB, price, idShop) {
+        console.log($('#count').val(), nameB,id,table,nameP,idShop);
+        if (parseInt($('#count').val())) {
+            var count = parseInt($('#count').val());
+            if ((@Model.First().cap) < count)
+                {
+                   alert('Количество товара к отправке больше, чем имеется на складе!');
+                   return false;
+                }
+                else
+                {
+                   $.ajax(
+                   {
+                        type: 'POST',
+                        url: '/Credit/CreditOrderS',
+                        data: { id, table, nameP, nameB, count, price, idShop },
+                        success: function (data) {
+                            $("#dialogContent").modal('hide');
+                            $("#modDialog").modal('hide');
+                            $('body').removeClass("modal-open");
+                            }
+                    });
+                 };
+           }
+           else {
+            alert("Некорректное значение!");
+            return false;
+           }
+    };
+</script>

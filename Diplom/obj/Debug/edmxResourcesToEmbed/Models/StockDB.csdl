@@ -1,0 +1,705 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AudioCards">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="NameAudio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idManufacture" Type="Int32" />
+    <Property Name="Bus" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="Manufacturers" Relationship="StockModel.FK_AudioCards_Manufacturers" FromRole="AudioCards" ToRole="Manufacturers" />
+    <NavigationProperty Name="slotBus" Relationship="StockModel.FK_AudioCards_slotBus" FromRole="AudioCards" ToRole="slotBus" />
+  </EntityType>
+  <EntityType Name="Boxes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nameBox" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idManufacture" Type="Int32" />
+    <Property Name="idForm" Type="Int32" />
+    <Property Name="Power" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="FormFactorMB" Relationship="StockModel.FK_Boxes_FormFactorMB" FromRole="Boxes" ToRole="FormFactorMB" />
+    <NavigationProperty Name="Manufacturers" Relationship="StockModel.FK_Boxes_Manufacturers" FromRole="Boxes" ToRole="Manufacturers" />
+    <NavigationProperty Name="Powers" Relationship="StockModel.FK_Boxes_Powers" FromRole="Boxes" ToRole="Powers" />
+  </EntityType>
+  <EntityType Name="Cpus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idManufacture" Type="Int32" />
+    <Property Name="nameCpu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="socketCpu" Type="Int32" />
+    <Property Name="coresCpu" Type="Int32" />
+    <Property Name="freqCpu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="Manufacturers" Relationship="StockModel.FK_Cpus_Manufacturers" FromRole="Cpus" ToRole="Manufacturers" />
+    <NavigationProperty Name="Sockets" Relationship="StockModel.FK_Cpus_Sockets" FromRole="Cpus" ToRole="Sockets" />
+  </EntityType>
+  <EntityType Name="FormFactorMB">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nameFF" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="weight" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Boxes" Relationship="StockModel.FK_Boxes_FormFactorMB" FromRole="FormFactorMB" ToRole="Boxes" />
+    <NavigationProperty Name="MotherBoards" Relationship="StockModel.FK_MotherBoards_FormFactorMB" FromRole="FormFactorMB" ToRole="MotherBoards" />
+  </EntityType>
+  <EntityType Name="HDDs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nameHDD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="capatity" Type="Int32" />
+    <Property Name="idManufacture" Type="Int32" />
+    <Property Name="typeHDD" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="HDDType" Relationship="StockModel.FK_HDDs_HDDType" FromRole="HDDs" ToRole="HDDType" />
+    <NavigationProperty Name="Manufacturers" Relationship="StockModel.FK_HDDs_Manufacturers" FromRole="HDDs" ToRole="Manufacturers" />
+  </EntityType>
+  <EntityType Name="HDDType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HDDs" Relationship="StockModel.FK_HDDs_HDDType" FromRole="HDDType" ToRole="HDDs" />
+  </EntityType>
+  <EntityType Name="Manufacturers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="Manufacture" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AudioCards" Relationship="StockModel.FK_AudioCards_Manufacturers" FromRole="Manufacturers" ToRole="AudioCards" />
+    <NavigationProperty Name="Boxes" Relationship="StockModel.FK_Boxes_Manufacturers" FromRole="Manufacturers" ToRole="Boxes" />
+    <NavigationProperty Name="Cpus" Relationship="StockModel.FK_Cpus_Manufacturers" FromRole="Manufacturers" ToRole="Cpus" />
+    <NavigationProperty Name="HDDs" Relationship="StockModel.FK_HDDs_Manufacturers" FromRole="Manufacturers" ToRole="HDDs" />
+    <NavigationProperty Name="MotherBoards" Relationship="StockModel.FK_MotherBoards_Manufacturers" FromRole="Manufacturers" ToRole="MotherBoards" />
+    <NavigationProperty Name="Powers" Relationship="StockModel.FK_Powers_Manufacturers" FromRole="Manufacturers" ToRole="Powers" />
+    <NavigationProperty Name="Rams" Relationship="StockModel.FK_Rams_Manufacturers" FromRole="Manufacturers" ToRole="Rams" />
+    <NavigationProperty Name="VideoCards" Relationship="StockModel.FK_VideoCards_Manufacturers" FromRole="Manufacturers" ToRole="VideoCards" />
+    <Property Name="Adress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrdersM" Relationship="StockModel.FK_OrdersM_Manufacturers" FromRole="Manufacturers" ToRole="OrdersM" />
+  </EntityType>
+  <EntityType Name="MotherBoards">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idManufacture" Type="Int32" />
+    <Property Name="nameMB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="socketMB" Type="Int32" />
+    <Property Name="typeRam" Type="Int32" />
+    <Property Name="maxFreq" Type="Int32" />
+    <Property Name="slotsBus" Type="Int32" />
+    <Property Name="FFMB" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="FormFactorMB" Relationship="StockModel.FK_MotherBoards_FormFactorMB" FromRole="MotherBoards" ToRole="FormFactorMB" />
+    <NavigationProperty Name="Manufacturers" Relationship="StockModel.FK_MotherBoards_Manufacturers" FromRole="MotherBoards" ToRole="Manufacturers" />
+    <NavigationProperty Name="RamType" Relationship="StockModel.FK_MotherBoards_RamType" FromRole="MotherBoards" ToRole="RamType" />
+    <NavigationProperty Name="slotBus" Relationship="StockModel.FK_MotherBoards_slotBus" FromRole="MotherBoards" ToRole="slotBus" />
+    <NavigationProperty Name="Sockets" Relationship="StockModel.FK_MotherBoards_Sockets" FromRole="MotherBoards" ToRole="Sockets" />
+  </EntityType>
+  <EntityType Name="partsFreq">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="frequency" Type="Int32" />
+    <NavigationProperty Name="Rams" Relationship="StockModel.FK_Rams_partsFreq" FromRole="partsFreq" ToRole="Rams" />
+  </EntityType>
+  <EntityType Name="Powers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="NameBox" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idManufacture" Type="Int32" />
+    <Property Name="Watts" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="Boxes" Relationship="StockModel.FK_Boxes_Powers" FromRole="Powers" ToRole="Boxes" />
+    <NavigationProperty Name="Manufacturers" Relationship="StockModel.FK_Powers_Manufacturers" FromRole="Powers" ToRole="Manufacturers" />
+  </EntityType>
+  <EntityType Name="Rams">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="idManufacture" Type="Int32" />
+    <Property Name="nameRam" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="freqRam" Type="Int32" />
+    <Property Name="typeRam" Type="Int32" />
+    <Property Name="taiming" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="capRam" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Count" Type="Int32" />
+    <NavigationProperty Name="Manufacturers" Relationship="StockModel.FK_Rams_Manufacturers" FromRole="Rams" ToRole="Manufacturers" />
+    <NavigationProperty Name="partsFreq" Relationship="StockModel.FK_Rams_partsFreq" FromRole="Rams" ToRole="partsFreq" />
+    <NavigationProperty Name="RamType" Relationship="StockModel.FK_Rams_RamType" FromRole="Rams" ToRole="RamType" />
+  </EntityType>
+  <EntityType Name="RamType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="typeMemory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MotherBoards" Relationship="StockModel.FK_MotherBoards_RamType" FromRole="RamType" ToRole="MotherBoards" />
+    <NavigationProperty Name="Rams" Relationship="StockModel.FK_Rams_RamType" FromRole="RamType" ToRole="Rams" />
+    <NavigationProperty Name="VideoCards" Relationship="StockModel.FK_VideoCards_RamType" FromRole="RamType" ToRole="VideoCards" />
+  </EntityType>
+  <EntityType Name="slotBus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="typeBus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AudioCards" Relationship="StockModel.FK_AudioCards_slotBus" FromRole="slotBus" ToRole="AudioCards" />
+    <NavigationProperty Name="MotherBoards" Relationship="StockModel.FK_MotherBoards_slotBus" FromRole="slotBus" ToRole="MotherBoards" />
+    <NavigationProperty Name="VideoCards" Relationship="StockModel.FK_VideoCards_slotBus" FromRole="slotBus" ToRole="VideoCards" />
+  </EntityType>
+  <EntityType Name="Sockets">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="socket" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cpus" Relationship="StockModel.FK_Cpus_Sockets" FromRole="Sockets" ToRole="Cpus" />
+    <NavigationProperty Name="MotherBoards" Relationship="StockModel.FK_MotherBoards_Sockets" FromRole="Sockets" ToRole="MotherBoards" />
+  </EntityType>
+  <EntityType Name="VideoCards">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="NameVideo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TypeMem" Type="Int32" />
+    <Property Name="Bus" Type="Int32" />
+    <Property Name="DirectX" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="idManufacture" Type="Int32" />
+    <NavigationProperty Name="Manufacturers" Relationship="StockModel.FK_VideoCards_Manufacturers" FromRole="VideoCards" ToRole="Manufacturers" />
+    <NavigationProperty Name="RamType" Relationship="StockModel.FK_VideoCards_RamType" FromRole="VideoCards" ToRole="RamType" />
+    <NavigationProperty Name="slotBus" Relationship="StockModel.FK_VideoCards_slotBus" FromRole="VideoCards" ToRole="slotBus" />
+    <NavigationProperty Name="APIs" Relationship="StockModel.FK_VideoCards_APIs" FromRole="VideoCards" ToRole="APIs" />
+  </EntityType>
+  <EntityContainer Name="DiplomEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AudioCards" EntityType="Self.AudioCards" />
+    <EntitySet Name="Boxes" EntityType="Self.Boxes" />
+    <EntitySet Name="Cpus" EntityType="Self.Cpus" />
+    <EntitySet Name="FormFactorMB" EntityType="Self.FormFactorMB" />
+    <EntitySet Name="HDDs" EntityType="Self.HDDs" />
+    <EntitySet Name="HDDType" EntityType="Self.HDDType" />
+    <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" />
+    <EntitySet Name="MotherBoards" EntityType="Self.MotherBoards" />
+    <EntitySet Name="partsFreq" EntityType="Self.partsFreq" />
+    <EntitySet Name="Powers" EntityType="Self.Powers" />
+    <EntitySet Name="Rams" EntityType="Self.Rams" />
+    <EntitySet Name="RamType" EntityType="Self.RamType" />
+    <EntitySet Name="slotBus" EntityType="Self.slotBus" />
+    <EntitySet Name="Sockets" EntityType="Self.Sockets" />
+    <EntitySet Name="VideoCards" EntityType="Self.VideoCards" />
+    <EntitySet Name="sysdiagrams" EntityType="StockModel.sysdiagrams" />
+    <AssociationSet Name="FK_AudioCards_Manufacturers" Association="StockModel.FK_AudioCards_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="AudioCards" EntitySet="AudioCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AudioCards_slotBus" Association="StockModel.FK_AudioCards_slotBus">
+      <End Role="slotBus" EntitySet="slotBus" />
+      <End Role="AudioCards" EntitySet="AudioCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Boxes_FormFactorMB" Association="StockModel.FK_Boxes_FormFactorMB">
+      <End Role="FormFactorMB" EntitySet="FormFactorMB" />
+      <End Role="Boxes" EntitySet="Boxes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Boxes_Manufacturers" Association="StockModel.FK_Boxes_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="Boxes" EntitySet="Boxes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Boxes_Powers" Association="StockModel.FK_Boxes_Powers">
+      <End Role="Powers" EntitySet="Powers" />
+      <End Role="Boxes" EntitySet="Boxes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cpus_Manufacturers" Association="StockModel.FK_Cpus_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="Cpus" EntitySet="Cpus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cpus_Sockets" Association="StockModel.FK_Cpus_Sockets">
+      <End Role="Sockets" EntitySet="Sockets" />
+      <End Role="Cpus" EntitySet="Cpus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MotherBoards_FormFactorMB" Association="StockModel.FK_MotherBoards_FormFactorMB">
+      <End Role="FormFactorMB" EntitySet="FormFactorMB" />
+      <End Role="MotherBoards" EntitySet="MotherBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDDs_HDDType" Association="StockModel.FK_HDDs_HDDType">
+      <End Role="HDDType" EntitySet="HDDType" />
+      <End Role="HDDs" EntitySet="HDDs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDDs_Manufacturers" Association="StockModel.FK_HDDs_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="HDDs" EntitySet="HDDs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MotherBoards_Manufacturers" Association="StockModel.FK_MotherBoards_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="MotherBoards" EntitySet="MotherBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Powers_Manufacturers" Association="StockModel.FK_Powers_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="Powers" EntitySet="Powers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rams_Manufacturers" Association="StockModel.FK_Rams_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="Rams" EntitySet="Rams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoCards_Manufacturers" Association="StockModel.FK_VideoCards_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="VideoCards" EntitySet="VideoCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MotherBoards_RamType" Association="StockModel.FK_MotherBoards_RamType">
+      <End Role="RamType" EntitySet="RamType" />
+      <End Role="MotherBoards" EntitySet="MotherBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MotherBoards_slotBus" Association="StockModel.FK_MotherBoards_slotBus">
+      <End Role="slotBus" EntitySet="slotBus" />
+      <End Role="MotherBoards" EntitySet="MotherBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MotherBoards_Sockets" Association="StockModel.FK_MotherBoards_Sockets">
+      <End Role="Sockets" EntitySet="Sockets" />
+      <End Role="MotherBoards" EntitySet="MotherBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rams_partsFreq" Association="StockModel.FK_Rams_partsFreq">
+      <End Role="partsFreq" EntitySet="partsFreq" />
+      <End Role="Rams" EntitySet="Rams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rams_RamType" Association="StockModel.FK_Rams_RamType">
+      <End Role="RamType" EntitySet="RamType" />
+      <End Role="Rams" EntitySet="Rams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoCards_RamType" Association="StockModel.FK_VideoCards_RamType">
+      <End Role="RamType" EntitySet="RamType" />
+      <End Role="VideoCards" EntitySet="VideoCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoCards_slotBus" Association="StockModel.FK_VideoCards_slotBus">
+      <End Role="slotBus" EntitySet="slotBus" />
+      <End Role="VideoCards" EntitySet="VideoCards" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(StockModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(StockModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="APIs" EntityType="StockModel.APIs" />
+    <AssociationSet Name="FK_VideoCards_APIs" Association="StockModel.FK_VideoCards_APIs">
+      <End Role="APIs" EntitySet="APIs" />
+      <End Role="VideoCards" EntitySet="VideoCards" />
+    </AssociationSet>
+    <EntitySet Name="OrderS" EntityType="StockModel.OrderS" />
+    <EntitySet Name="OrdersM" EntityType="StockModel.OrdersM" />
+    <EntitySet Name="Shops" EntityType="StockModel.Shops" />
+    <AssociationSet Name="FK_OrdersM_Manufacturers" Association="StockModel.FK_OrdersM_Manufacturers">
+      <End Role="Manufacturers" EntitySet="Manufacturers" />
+      <End Role="OrdersM" EntitySet="OrdersM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderS_Shops" Association="StockModel.FK_OrderS_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="OrderS" EntitySet="OrderS" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_AudioCards_Manufacturers">
+    <End Type="StockModel.Manufacturers" Role="Manufacturers" Multiplicity="0..1" />
+    <End Type="StockModel.AudioCards" Role="AudioCards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AudioCards">
+        <PropertyRef Name="idManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AudioCards_slotBus">
+    <End Type="StockModel.slotBus" Role="slotBus" Multiplicity="0..1" />
+    <End Type="StockModel.AudioCards" Role="AudioCards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="slotBus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AudioCards">
+        <PropertyRef Name="Bus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Boxes_FormFactorMB">
+    <End Type="StockModel.FormFactorMB" Role="FormFactorMB" Multiplicity="0..1" />
+    <End Type="StockModel.Boxes" Role="Boxes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormFactorMB">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Boxes">
+        <PropertyRef Name="idForm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Boxes_Manufacturers">
+    <End Type="StockModel.Manufacturers" Role="Manufacturers" Multiplicity="0..1" />
+    <End Type="StockModel.Boxes" Role="Boxes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Boxes">
+        <PropertyRef Name="idManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Boxes_Powers">
+    <End Type="StockModel.Powers" Role="Powers" Multiplicity="0..1" />
+    <End Type="StockModel.Boxes" Role="Boxes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Powers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Boxes">
+        <PropertyRef Name="Power" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cpus_Manufacturers">
+    <End Type="StockModel.Manufacturers" Role="Manufacturers" Multiplicity="0..1" />
+    <End Type="StockModel.Cpus" Role="Cpus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cpus">
+        <PropertyRef Name="idManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cpus_Sockets">
+    <End Type="StockModel.Sockets" Role="Sockets" Multiplicity="0..1" />
+    <End Type="StockModel.Cpus" Role="Cpus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sockets">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cpus">
+        <PropertyRef Name="socketCpu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MotherBoards_FormFactorMB">
+    <End Type="StockModel.FormFactorMB" Role="FormFactorMB" Multiplicity="0..1" />
+    <End Type="StockModel.MotherBoards" Role="MotherBoards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormFactorMB">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MotherBoards">
+        <PropertyRef Name="FFMB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDDs_HDDType">
+    <End Type="StockModel.HDDType" Role="HDDType" Multiplicity="0..1" />
+    <End Type="StockModel.HDDs" Role="HDDs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HDDType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HDDs">
+        <PropertyRef Name="typeHDD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDDs_Manufacturers">
+    <End Type="StockModel.Manufacturers" Role="Manufacturers" Multiplicity="0..1" />
+    <End Type="StockModel.HDDs" Role="HDDs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HDDs">
+        <PropertyRef Name="idManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MotherBoards_Manufacturers">
+    <End Type="StockModel.Manufacturers" Role="Manufacturers" Multiplicity="0..1" />
+    <End Type="StockModel.MotherBoards" Role="MotherBoards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MotherBoards">
+        <PropertyRef Name="idManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Powers_Manufacturers">
+    <End Type="StockModel.Manufacturers" Role="Manufacturers" Multiplicity="0..1" />
+    <End Type="StockModel.Powers" Role="Powers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Powers">
+        <PropertyRef Name="idManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rams_Manufacturers">
+    <End Type="StockModel.Manufacturers" Role="Manufacturers" Multiplicity="0..1" />
+    <End Type="StockModel.Rams" Role="Rams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Rams">
+        <PropertyRef Name="idManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoCards_Manufacturers">
+    <End Type="StockModel.Manufacturers" Role="Manufacturers" Multiplicity="0..1" />
+    <End Type="StockModel.VideoCards" Role="VideoCards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VideoCards">
+        <PropertyRef Name="idManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MotherBoards_RamType">
+    <End Type="StockModel.RamType" Role="RamType" Multiplicity="0..1" />
+    <End Type="StockModel.MotherBoards" Role="MotherBoards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RamType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MotherBoards">
+        <PropertyRef Name="typeRam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MotherBoards_slotBus">
+    <End Type="StockModel.slotBus" Role="slotBus" Multiplicity="0..1" />
+    <End Type="StockModel.MotherBoards" Role="MotherBoards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="slotBus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MotherBoards">
+        <PropertyRef Name="slotsBus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MotherBoards_Sockets">
+    <End Type="StockModel.Sockets" Role="Sockets" Multiplicity="0..1" />
+    <End Type="StockModel.MotherBoards" Role="MotherBoards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sockets">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MotherBoards">
+        <PropertyRef Name="socketMB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rams_partsFreq">
+    <End Type="StockModel.partsFreq" Role="partsFreq" Multiplicity="0..1" />
+    <End Type="StockModel.Rams" Role="Rams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="partsFreq">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Rams">
+        <PropertyRef Name="freqRam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rams_RamType">
+    <End Type="StockModel.RamType" Role="RamType" Multiplicity="0..1" />
+    <End Type="StockModel.Rams" Role="Rams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RamType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Rams">
+        <PropertyRef Name="typeRam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoCards_RamType">
+    <End Type="StockModel.RamType" Role="RamType" Multiplicity="0..1" />
+    <End Type="StockModel.VideoCards" Role="VideoCards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RamType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VideoCards">
+        <PropertyRef Name="TypeMem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoCards_slotBus">
+    <End Type="StockModel.slotBus" Role="slotBus" Multiplicity="0..1" />
+    <End Type="StockModel.VideoCards" Role="VideoCards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="slotBus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VideoCards">
+        <PropertyRef Name="Bus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="APIs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nameAPI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="VideoCards" Relationship="StockModel.FK_VideoCards_APIs" FromRole="APIs" ToRole="VideoCards" />
+  </EntityType>
+  <Association Name="FK_VideoCards_APIs">
+    <End Type="StockModel.APIs" Role="APIs" Multiplicity="0..1" />
+    <End Type="StockModel.VideoCards" Role="VideoCards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="APIs">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VideoCards">
+        <PropertyRef Name="DirectX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OrderS">
+    <Key>
+      <PropertyRef Name="idOrder" />
+    </Key>
+    <Property Name="idOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numberParts" Type="Int32" Nullable="false" />
+    <Property Name="DateOrder" Type="DateTime" Precision="3" />
+    <Property Name="DateComplete" Type="DateTime" Precision="3" />
+    <Property Name="namePart" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idShop" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Shops" Relationship="StockModel.FK_OrderS_Shops" FromRole="OrderS" ToRole="Shops" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="nameTable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Manager" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OrdersM">
+    <Key>
+      <PropertyRef Name="idOrder" />
+    </Key>
+    <Property Name="idOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numberParts" Type="Int32" Nullable="false" />
+    <Property Name="DateOrder" Type="DateTime" Precision="3" />
+    <Property Name="DateComplete" Type="DateTime" Precision="3" />
+    <Property Name="namePart" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idManufacture" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Manufacturers" Relationship="StockModel.FK_OrdersM_Manufacturers" FromRole="OrdersM" ToRole="Manufacturers" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="nameTable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Manager" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Shops">
+    <Key>
+      <PropertyRef Name="idShop" />
+    </Key>
+    <Property Name="idShop" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameShop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="adressShop" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrderS" Relationship="StockModel.FK_OrderS_Shops" FromRole="Shops" ToRole="OrderS" />
+  </EntityType>
+  <Association Name="FK_OrdersM_Manufacturers">
+    <End Type="StockModel.Manufacturers" Role="Manufacturers" Multiplicity="1" />
+    <End Type="StockModel.OrdersM" Role="OrdersM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="OrdersM">
+        <PropertyRef Name="idManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderS_Shops">
+    <End Type="StockModel.Shops" Role="Shops" Multiplicity="1" />
+    <End Type="StockModel.OrderS" Role="OrderS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="idShop" />
+      </Principal>
+      <Dependent Role="OrderS">
+        <PropertyRef Name="idShop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,67 @@
+﻿@model Diplom.Models.ViewModel
+
+
+@{
+    ViewBag.Title = "Запрос - Заказ";
+}
+
+
+            <section style="margin-top:30px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Введите количество заказываемого товара
+                        <span class="text-danger">@Model.Name</span>  от поставщика <span class="text-primary">@Model.brand</span></h2>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-condensed table-striped table-bordered">
+                            <tr>
+                                <td>Количество:</td>
+                                <td><input type="text" name="count" id="count" class="form-control" value=""></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <h3>Сумма заказа: <strong><span class="text-danger sum">0</span></strong> руб.</h3> 
+                        <button class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button class="btn btn-warning OK" type="submit" disabled="disabled" onclick="send(@Model.uniqId , '@Model.Table' , '@Model.Name' , '@Model.brand' , '@Model.price')">Заказать</button>
+                    </div>
+                </div>
+            </section>
+
+
+<script>
+    $(document).ready(function () {
+        console.log("ready!");
+        $('.OK').prop('disabled', true);
+    });
+
+    $('#count').on("input", function () {
+        if ($('#count').val() == "") {
+            $('.OK').prop('disabled', true);
+        }
+        else $('.OK').prop('disabled', false);
+        $('.sum').text(@Model.price*($('#count').val()))
+    })
+
+    function send(id, table, nameP, nameB, price) {
+        console.log($('#count').val(), nameB,id,table,nameP);
+        if (parseInt($('#count').val())) {
+             var count = parseInt($('#count').val());
+             $.ajax(
+                {
+                  type: 'POST',
+                  url: '/Credit/CreditOrderM',
+                  data: { id, table, nameP, nameB, count, price },
+                  success: function (data) {
+                      $("#dialogContent").modal('hide');
+                      $("#modDialog").modal('hide');
+                      $('body').removeClass("modal-open");
+                }
+          });
+        }
+        else {
+            alert("Некорректное значение!");
+            return false;
+        }
+    };
+</script>

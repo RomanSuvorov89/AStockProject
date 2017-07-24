@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f2645b7813564395b1279012f31d33ce" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="StockModel.AudioCards" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Boxes" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Cpus" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.FormFactorMB" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.HDDs" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.HDDType" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Manufacturers" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.MotherBoards" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.partsFreq" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Powers" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Rams" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.RamType" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.slotBus" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.Sockets" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.VideoCards" Width="1.5" PointX="14.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.sysdiagrams" Width="1.5" PointX="15.375" PointY="7.75" />
+        <AssociationConnector Association="StockModel.FK_AudioCards_Manufacturers" />
+        <AssociationConnector Association="StockModel.FK_AudioCards_slotBus" />
+        <AssociationConnector Association="StockModel.FK_Boxes_FormFactorMB" />
+        <AssociationConnector Association="StockModel.FK_Boxes_Manufacturers" />
+        <AssociationConnector Association="StockModel.FK_Boxes_Powers" />
+        <AssociationConnector Association="StockModel.FK_Cpus_Manufacturers" />
+        <AssociationConnector Association="StockModel.FK_Cpus_Sockets" />
+        <AssociationConnector Association="StockModel.FK_MotherBoards_FormFactorMB" />
+        <AssociationConnector Association="StockModel.FK_HDDs_HDDType" />
+        <AssociationConnector Association="StockModel.FK_HDDs_Manufacturers" />
+        <AssociationConnector Association="StockModel.FK_MotherBoards_Manufacturers" />
+        <AssociationConnector Association="StockModel.FK_Powers_Manufacturers" />
+        <AssociationConnector Association="StockModel.FK_Rams_Manufacturers" />
+        <AssociationConnector Association="StockModel.FK_VideoCards_Manufacturers" />
+        <AssociationConnector Association="StockModel.FK_MotherBoards_RamType" />
+        <AssociationConnector Association="StockModel.FK_MotherBoards_slotBus" />
+        <AssociationConnector Association="StockModel.FK_MotherBoards_Sockets" />
+        <AssociationConnector Association="StockModel.FK_Rams_partsFreq" />
+        <AssociationConnector Association="StockModel.FK_Rams_RamType" />
+        <AssociationConnector Association="StockModel.FK_VideoCards_RamType" />
+        <AssociationConnector Association="StockModel.FK_VideoCards_slotBus" />
+        <EntityTypeShape EntityType="StockModel.APIs" Width="1.5" PointX="3.375" PointY="10.875" />
+        <AssociationConnector Association="StockModel.FK_VideoCards_APIs" />
+        <EntityTypeShape EntityType="StockModel.OrderS" Width="1.5" PointX="11.625" PointY="11" />
+        <EntityTypeShape EntityType="StockModel.OrdersM" Width="1.5" PointX="7" PointY="11.375" />
+        <EntityTypeShape EntityType="StockModel.Shops" Width="1.5" PointX="9.375" PointY="11.375" />
+        <AssociationConnector Association="StockModel.FK_OrdersM_Manufacturers" />
+        <AssociationConnector Association="StockModel.FK_OrderS_Shops" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
